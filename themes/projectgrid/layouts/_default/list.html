@@ -1,0 +1,5 @@
+{{ define "main" }}
+<a href="{{ "/" | relURL }}" class="back-link">← All projects</a>
+<section class="hero list-hero"><p class="eyebrow">From the workshop</p><h1>{{ .Title }}</h1></section>
+{{ if eq .Kind "taxonomy" }}<div class="topic-list">{{ range .Pages.ByTitle }}<a class="panel" href="{{ .RelPermalink }}">{{ .Title }} <span class="count">{{ len .Pages }} projects →</span></a>{{ end }}</div>{{ else }}{{ partial "project-library.html" . }}{{ end }}
+{{ end }}

@@ -8,8 +8,6 @@ demo: "https://tazk.eknath.dev"
 website: "https://tazk.eknath.dev"
 ---
 
-# Tazk - Personal Task Management Tool
-
 A powerful personal task management platform designed to organize and track tasks across all areas of life. From work assignments to home chores, personal projects to event planning, Tazk provides the structure and features needed to stay organized and productive.
 
 ## Problem Statement

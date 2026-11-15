@@ -4,17 +4,15 @@ date: 2024-10-10
 description: "A comprehensive collection of programming language and tool cheatsheets for developers"
 tags: ["documentation", "reference", "hugo", "web", "tools"]
 status: "in-progress"
-github: "https://github.com/eknath/quickref"
-website: "https://quickref.eknath.dev"
+github: "https://github.com/Eganathan/quickRef"
+website: "https://qref.eknath.dev"
 actions:
   - label: "Browse Cheatsheets"
-    url: "https://quickref.eknath.dev"
+    url: "https://qref.eknath.dev"
     type: "website"
     icon: "📖"
     external: true
 ---
-
-# QuickRef - Developer Cheatsheets
 
 A curated collection of quick reference guides and cheatsheets for programming languages, tools, and technologies that developers use daily.
 

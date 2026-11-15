@@ -7,8 +7,6 @@ status: "archived"
 github: "https://github.com/Eganathan/Tanto-Srima-Cashier-Tool"
 ---
 
-# Tanto-Cashier-Tool
-
 This is a basic simple Python application that was developed by me for solving a problem that I was facing while working at a restaurant at Auroville. The restaurant had different discounts for different type of people like residents have -20%, Volunteers have -10% and outsiders have +5% Tax. I built this application to solve a real world problem.
 
 ## The Problem

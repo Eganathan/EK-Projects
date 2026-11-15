@@ -6,8 +6,6 @@ tags: ["java", "swing", "mysql", "jdbc", "desktop", "markdown"]
 status: "completed"
 ---
 
-# Stickylets - Desktop Sticky Notes Application
-
 A desktop sticky notes application inspired by Windows sticky notes, built entirely with Java Swing and MySQL. This project represents a significant personal milestone - the first truly fulfilling application built from scratch during the pre-AI era.
 
 ## Project Overview

@@ -6,6 +6,8 @@ theme = "projectgrid"
 [params]
   description = "My projects and experiments"
   author = "Eknath"
+  siteid = "projects"
+  repository = "projects_blog"
 
 [markup]
   [markup.goldmark]

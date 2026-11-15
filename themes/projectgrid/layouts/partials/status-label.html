@@ -1,0 +1,2 @@
+{{- $labels := dict "live" "Live" "in-progress" "In progress" "hold" "On hold" "archived" "Archived" "completed" "Completed" "vision" "Vision" -}}
+{{- index $labels . | default (. | humanize) -}}

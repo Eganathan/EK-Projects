@@ -8,8 +8,6 @@ demo: "https://dhanika.eknath.dev"
 website: "https://dhanika.eknath.dev"
 ---
 
-# Personal Budget Tracker
-
 A lightweight, client-side budget tracking application that helps you monitor your income, expenses, and financial goals without compromising your privacy, i was using online sheets though they are nice some of my friends found it hard to visualize their financial picture, this tool is build for me and them to help us visualize how we are utilizing the amount, figure out what is draining the budget and whats not etc.
 
 ## Key Features

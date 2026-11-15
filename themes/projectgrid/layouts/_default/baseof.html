@@ -1,189 +1,39 @@
+{{/* Generated from Command Center shared/site-theme. Run npm run theme:sync there. */}}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ .Site.LanguageCode }}" data-theme="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} - {{ .Site.Title }}{{ end }}</title>
-    <meta name="description" content="{{ if .Description }}{{ .Description }}{{ else }}{{ .Site.Params.description }}{{ end }}">
-    
-    <style>
-        :root {
-            --bg-primary: #fafafa;
-            --bg-secondary: white;
-            --text-primary: #333;
-            --text-secondary: #7f8c8d;
-            --text-muted: #666;
-            --border-color: #e1e5e9;
-            --accent-color: #2c3e50;
-        }
-        
-        [data-theme="dark"] {
-            --bg-primary: #121212;
-            --bg-secondary: #1e1e1e;
-            --text-primary: #e4e4e4;
-            --text-secondary: #a0a0a0;
-            --text-muted: #888;
-            --border-color: #333;
-            --accent-color: #64b5f6;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            line-height: 1.6;
-            color: var(--text-primary);
-            background: var(--bg-primary);
-            transition: color 0.3s ease, background-color 0.3s ease;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        header {
-            background: var(--bg-secondary);
-            border-bottom: 1px solid var(--border-color);
-            padding: 20px 0;
-            margin-bottom: 40px;
-            transition: background-color 0.3s ease, border-color 0.3s ease;
-        }
-        
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .site-title {
-            font-size: 24px;
-            font-weight: 600;
-            color: var(--accent-color);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-        
-        .site-description {
-            color: var(--text-secondary);
-            font-size: 14px;
-            margin-top: 4px;
-            transition: color 0.3s ease;
-        }
-        
-        .nav-content {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-        
-        nav a {
-            color: var(--text-muted);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-        
-        nav a:hover {
-            color: var(--accent-color);
-        }
-        
-        .theme-toggle {
-            background: none;
-            border: 2px solid var(--border-color);
-            border-radius: 20px;
-            padding: 8px 12px;
-            cursor: pointer;
-            font-size: 16px;
-            color: var(--text-primary);
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-        
-        .theme-toggle:hover {
-            border-color: var(--accent-color);
-            color: var(--accent-color);
-        }
-        
-        main {
-            min-height: 60vh;
-        }
-        
-        footer {
-            margin-top: 80px;
-            padding: 20px 0;
-            border-top: 1px solid var(--border-color);
-            color: var(--text-secondary);
-            text-align: center;
-            font-size: 14px;
-            transition: border-color 0.3s ease, color 0.3s ease;
-        }
-    </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ if not .IsHome }}{{ .Title }} · {{ end }}{{ .Site.Title }} · Eknath</title>
+  <meta name="description" content="{{ .Description | default .Site.Params.description }}">
+  <meta name="color-scheme" content="dark light">
+  <link rel="canonical" href="{{ .Permalink }}">
+  <script>try{const t=localStorage.getItem('ek-theme');if(t==='light'||t==='dark')document.documentElement.dataset.theme=t}catch{}</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ "css/ek-tokens.css" | relURL }}">
+  <link rel="stylesheet" href="{{ "css/ek-theme.css" | relURL }}">
+  <link rel="stylesheet" href="{{ "css/site.css" | relURL }}">
+  {{ with .OutputFormats.Get "RSS" }}<link rel="alternate" type="application/rss+xml" href="{{ .RelPermalink }}" title="{{ $.Site.Title }}">{{ end }}
+  <script src="{{ "js/ek-theme.js" | relURL }}" defer></script>
+  <script src="{{ "js/app.js" | relURL }}" defer></script>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <div class="header-content">
-                <div>
-                    <a href="/" class="site-title">{{ .Site.Title }}</a>
-                    <div class="site-description">{{ .Site.Params.description }}</div>
-                </div>
-                <div class="nav-content">
-                    <nav>
-                        <a href="/">Home</a>
-                        <a href="/projects">Projects</a>
-                    </nav>
-                    <button class="theme-toggle" onclick="toggleTheme()" title="Toggle dark mode">
-                        <span class="theme-icon">🌙</span>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </header>
-    
-    <main>
-        <div class="container">
-            {{ block "main" . }}{{ end }}
-        </div>
-    </main>
-    
-    <footer>
-        <div class="container">
-            <p>&copy; {{ now.Format "2006" }} {{ .Site.Params.author }}. Built with Hugo.</p>
-        </div>
-    </footer>
-    <script>
-        function toggleTheme() {
-            const html = document.documentElement;
-            const currentTheme = html.getAttribute('data-theme');
-            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            
-            html.setAttribute('data-theme', newTheme);
-            localStorage.setItem('theme', newTheme);
-            
-            const themeIcon = document.querySelector('.theme-icon');
-            themeIcon.textContent = newTheme === 'dark' ? '☀️' : '🌙';
-        }
-        
-        // Initialize theme on page load
-        (function() {
-            const savedTheme = localStorage.getItem('theme') || 
-                             (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-            
-            document.documentElement.setAttribute('data-theme', savedTheme);
-            
-            const themeIcon = document.querySelector('.theme-icon');
-            if (themeIcon) {
-                themeIcon.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
-            }
-        })();
-    </script>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="shell header-inner">
+      <a class="brand" href="{{ "/" | relURL }}" aria-label="{{ .Site.Title }} home"><span class="brand-mark" aria-hidden="true">ek<span>.</span></span><span>{{ .Site.Title }}<small>by Eknath</small></span></a>
+      <nav class="site-nav" aria-label="Main navigation">
+        <a href="https://eknath.dev/">Home</a>
+        <a href="https://md.eknath.dev/">Blog</a>
+        <a href="{{ if eq .Site.Params.siteid "quickref" }}{{ "/" | relURL }}{{ else }}https://qref.eknath.dev/{{ end }}" {{ if eq .Site.Params.siteid "quickref" }}aria-current="page"{{ end }}>QuickRef</a>
+        <a href="{{ if eq .Site.Params.siteid "projects" }}{{ "/" | relURL }}{{ else }}https://projects.eknath.dev/{{ end }}" {{ if eq .Site.Params.siteid "projects" }}aria-current="page"{{ end }}>Projects</a>
+      </nav>
+      <button class="theme-toggle" type="button" aria-label="Switch to light theme" aria-pressed="true"><svg class="sun-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></svg><svg class="moon-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14A8.5 8.5 0 0 1 10 4a8.5 8.5 0 1 0 10 10Z"/></svg></button>
+    </div>
+  </header>
+  <main id="main" class="shell">{{ block "main" . }}{{ end }}</main>
+  <footer class="site-footer shell"><p>© {{ now.Year }} Eknath<span class="footer-dot">/</span>{{ .Site.Title }}</p><div><a href="https://eknath.dev/">Around the web ↗</a><a href="https://github.com/Eganathan/{{ .Site.Params.repository }}">Source ↗</a></div></footer>
 </body>
 </html>

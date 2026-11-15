@@ -8,8 +8,6 @@ demo: "https://linkx.eknath.dev"
 website: "https://linkx.eknath.dev"
 ---
 
-# LinkX - Organized Link Management Platform
-
 A powerful link management platform designed to solve the common problem of losing incredible playlists and resources shared on social media platforms. Instead of manually searching through notes or keep apps after links vanish from WhatsApp stories or other temporary sharing platforms, LinkX provides a permanent, organized solution.
 
 ## Problem Statement

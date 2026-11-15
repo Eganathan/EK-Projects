@@ -8,8 +8,6 @@ demo: "https://jots.eknath.dev"
 website: "https://jots.eknath.dev"
 ---
 
-# Jots - Google Keep Alternative
-
 An alternative note-taking application to Google Keep, developed to test and explore the strengths and weaknesses of Zoho Catalyst as a backend platform. While the project served its purpose as a learning experience, active development has been discontinued.
 
 ## Project Overview

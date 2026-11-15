@@ -7,8 +7,6 @@ status: "vision"
 website: "https://persona.eknath.dev"
 ---
 
-# Persona - Complete Personal Life Management System
-
 A comprehensive all-in-one platform designed to centralize every aspect of personal life management. Instead of juggling multiple separate applications for different needs, Persona provides a unified dashboard where you can login and instantly see what's happening in your life across all dimensions.
 
 **Note**: This is a very ambitious project currently in the vision stage, with development planned for the future.

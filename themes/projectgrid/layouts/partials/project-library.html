@@ -1,0 +1,18 @@
+{{ $pages := .Pages }}
+{{ if .IsHome }}{{ $pages = where .Site.RegularPages "Section" "projects" }}{{ end }}
+<section class="project-library" aria-label="Project collection">
+  <div class="library-heading"><div class="section-heading"><span class="section-index">01 /</span><h2>{{ if .IsHome }}The collection{{ else }}{{ .Title }}{{ end }}</h2></div><p class="result-count" data-results aria-live="polite">{{ len $pages }} projects</p></div>
+  <div class="project-toolbar" data-enhanced hidden><div class="filter-bar" aria-label="Filter by project status"><button type="button" class="filter-button" data-status="all" aria-pressed="true">All projects</button>{{ $statuses := slice }}{{ range $pages }}{{ with .Params.status }}{{ $statuses = $statuses | append . }}{{ end }}{{ end }}{{ range sort (uniq $statuses) }}<button type="button" class="filter-button" data-status="{{ . }}" aria-pressed="false">{{ partial "status-label.html" . }}</button>{{ end }}</div><label class="search-box"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4.5 4.5"/></svg><input data-search type="search" placeholder="Find a project…" aria-label="Search projects"><kbd>/</kbd></label></div>
+  <div class="projects-grid">
+    {{ range $index, $page := $pages.ByDate.Reverse }}
+    <a class="project-card panel hover-card" href="{{ .RelPermalink }}" data-project data-status="{{ .Params.status | default "unspecified" }}" data-search-text="{{ .Title }} {{ .Description }} {{ delimit (.Params.tags | default slice) " " }}">
+      {{ with .Params.thumbnail }}<img class="project-thumbnail" src="{{ . | relURL }}" alt="" loading="lazy">{{ end }}
+      <div class="project-card-top"><span class="project-monogram" aria-hidden="true">{{ substr .Title 0 1 }}</span>{{ with .Params.status }}<span class="status status-{{ . }}"><span></span>{{ partial "status-label.html" . }}</span>{{ end }}<span class="project-arrow" aria-hidden="true">↗</span></div>
+      <div class="project-card-body"><h3>{{ index (split .Title " - ") 0 }}</h3><p>{{ .Description }}</p></div>
+      <div class="tag-list">{{ range first 3 .Params.tags }}<span class="tag">{{ . }}</span>{{ end }}</div>
+      <div class="project-card-bottom"><span>Explore project <span aria-hidden="true">→</span></span><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006" }}</time></div>
+    </a>
+    {{ end }}
+  </div>
+  <div class="empty-state" data-empty hidden><h2>No projects found.</h2><p>Try another search or explore a different status.</p><button type="button" class="text-button" data-reset>Reset filters →</button></div>
+</section>

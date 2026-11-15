@@ -1,132 +1,67 @@
 # Hugo Projects Showcase
 
-This is a Hugo static site designed to showcase projects at projects.eknath.dev with a custom theme called "projectgrid".
+Personal project showcase at `https://projects.eknath.dev`, built with Hugo and the local `projectgrid` theme.
 
-## Theme Features
+## Development
 
-- **Simple Design**: Clean, minimal design inspired by paper boat theme
-- **Dark/Light Theme**: Toggle between light and dark themes with a button in the header
-- **Theme Persistence**: Remembers your theme preference and respects system theme preference
-- **Grid Layout**: Homepage displays projects in a responsive grid instead of full-width strips  
-- **Project Cards**: Each project card includes:
-  - Title
-  - Description
-  - Date
-  - Tags
-  - Optional thumbnail image
-- **Project Pages**: Individual project pages with:
-  - Header section with title, date, tags, and description
-  - Action links (GitHub, demo, website, download, custom actions)
-  - Full content area for detailed project information
-- **Smooth Transitions**: All theme changes are animated with smooth CSS transitions
-
-## How to Add Projects
-
-Create new project files in `content/projects/` with the following front matter:
-
-```yaml
----
-title: "Project Name"
-date: 2025-01-07
-description: "Brief project description"
-tags: ["react", "javascript", "web"]
-status: "live"  # live, in-progress, hold, archived
-thumbnail: "/images/project-thumb.jpg"  # optional
-github: "https://github.com/username/repo"  # optional
-demo: "https://demo.example.com"  # optional
-website: "https://project.example.com"  # optional
-download: "https://releases.com/download"  # optional
-actions:  # optional custom actions
-  - label: "API Docs"
-    url: "/docs/api"
-    type: "website"
-    icon: "📚"
-    external: false
----
-
-Your project content goes here...
-```
-
-## Project Status Types
-
-The theme supports four project status indicators:
-- `live` - Green badge for active, deployed projects
-- `in-progress` - Yellow badge for projects currently being worked on
-- `hold` - Orange badge for projects temporarily paused
-- `archived` - Gray badge for completed/discontinued projects
-
-## Action Link Types
-
-The theme supports several action link types with different colors:
-- `github` - Black background
-- `demo` - Blue background  
-- `website` - Green background
-- `download` - Red background
-
-## Custom Actions
-
-You can define custom actions using the `actions` array in front matter:
-
-```yaml
-actions:
-  - label: "API Documentation" 
-    url: "https://api.project.com/docs"
-    type: "website"
-    icon: "📚"
-    external: true
-```
-
-## Development Commands
-
-```bash
-# Serve locally
-hugo serve -D
-
-# Build for production
+```sh
+hugo server --renderToMemory --port 1315
 hugo --minify
-
-# Create new project
 hugo new content/projects/project-name.md
 ```
 
-## Theme Structure
+The existing Pages workflow builds with Hugo 0.141.0 and deploys on pushes to `master`. Keep the child independently buildable. Pushing the parent Command Center does not publish this site.
 
+## Content
+
+Create Markdown files in `content/projects/`:
+
+```yaml
+---
+title: "Project Name - Short explanation"
+date: 2025-01-07
+description: "A concise description of the project"
+tags: ["kotlin", "android"]
+status: "in-progress"
+thumbnail: "/images/project-thumb.jpg"  # optional
+website: "https://project.example.com"  # optional
+github: "https://github.com/username/repo"  # optional
+demo: "https://demo.example.com"  # optional
+download: "https://example.com/releases"  # optional
+actions:  # optional
+  - label: "API Docs"
+    url: "https://example.com/docs"
+    external: true
+---
+
+Project details start here. The template already supplies the page title.
 ```
-themes/projectgrid/
-├── layouts/
-│   ├── _default/
-│   │   ├── baseof.html     # Base template
-│   │   └── single.html     # Project page template
-│   └── index.html          # Homepage with grid layout
-```
 
-## Dark Theme
+Statuses: `live`, `in-progress`, `hold`, `archived`, `completed`, and `vision`. Filters are generated from the statuses actually used. Preserve existing status values unless the owner confirms a change; a stored `live` value is not independent evidence of current deployment.
 
-The theme includes a built-in dark/light mode toggle:
+The homepage uses the title before ` - ` as the compact card title and preserves the full title on detail pages. Search matches titles, descriptions, and tags. Action URLs are deduplicated and external links identify that they open a new tab. Put optional thumbnails in `static/images/`.
 
-- **Theme Toggle**: Click the moon/sun icon in the header to switch themes
-- **Auto Detection**: Respects your system's dark/light mode preference on first visit
-- **Persistence**: Your theme choice is saved in localStorage and remembered across visits
-- **Smooth Transitions**: All elements smoothly transition between themes
+## Shared theme
 
-### Theme Colors
+The theme follows the landing page's navy background, blue accents, Poppins typography, and rounded glass panels. Dark is the initial appearance; the optional light theme persists per browser origin.
 
-**Light Theme:**
-- Background: Light gray (#fafafa)
-- Cards: White
-- Text: Dark gray (#333)
-- Accent: Navy blue (#2c3e50)
+Edit shared files in `shared/site-theme/` in EK Command Center, then run `npm run theme:sync` there. `npm run theme:check` detects drift. Commit generated files in this repository so its standalone Hugo build keeps working.
 
-**Dark Theme:**
-- Background: Dark gray (#1a1a1a) 
-- Cards: Medium gray (#2d2d2d)
-- Text: Light gray (#e4e4e4)
-- Accent: Light blue (#64b5f6)
+Generated files (do not hand-edit):
 
-## Notes
+- `themes/projectgrid/layouts/_default/baseof.html`
+- `themes/projectgrid/static/css/ek-tokens.css`
+- `themes/projectgrid/static/css/ek-theme.css`
+- `themes/projectgrid/static/js/ek-theme.js`
 
-- Thumbnail images should be placed in `static/images/`
-- The theme is fully responsive and works on all device sizes
-- No external CSS/JS dependencies - everything is self-contained
-- Action links open external URLs in new tabs automatically
-- Theme switching works without page reload using CSS custom properties
+Site-specific files:
+
+- `layouts/index.html`, `layouts/_default/list.html`, and `layouts/_default/single.html` inside the theme.
+- `layouts/partials/project-library.html` and `status-label.html`.
+- `static/css/site.css` and `static/js/app.js`.
+
+The shared shell provides navigation, footer, accessible theme controls, `/` to focus search, code copying, responsive tables, and print styles. No package installation, Bootstrap, or icon font is required. Poppins uses Google Fonts with system-font fallbacks.
+
+## Verification
+
+Build with Hugo and check home, `/projects/`, tag pages, and representative detail pages. Exercise combined search/status filters, no-results/reset, dark/light persistence, optional actions and thumbnails, mobile overflow, and responsive video embeds. Content and CSS edits do not imply a live deployment.
