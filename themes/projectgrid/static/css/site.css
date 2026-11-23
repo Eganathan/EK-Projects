@@ -350,3 +350,9 @@
     padding:8px 11px
   }
 }
+.workshop-art { transform:none;box-shadow:none;border-radius:10px;background:var(--ek-panel); }
+.art-dots i,.art-dots i:first-child { background:var(--ek-accent); }
+.project-monogram,.project-card:nth-child(3n+2) .project-monogram,.project-card:nth-child(3n+3) .project-monogram { background:var(--ek-soft);border:1px solid var(--ek-border);color:var(--ek-accent);border-radius:8px;font-family:var(--ek-font-display);font-weight:700; }
+.project-card { border-radius:12px; }
+.project-card-body h3 { font-weight:800; }
+.action-link:first-child { background:var(--ek-button-fill);border-color:var(--ek-button-fill);color:var(--ek-button-text); }

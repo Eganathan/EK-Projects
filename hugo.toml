@@ -5,7 +5,7 @@ theme = "projectgrid"
 
 [params]
   description = "My projects and experiments"
-  author = "Eknath"
+  author = "Eganathan R (Eknath)"
   siteid = "projects"
   repository = "projects_blog"
 
@@ -15,8 +15,14 @@ theme = "projectgrid"
       unsafe = true
 
 [outputs]
-  home = ["HTML", "RSS"]
+  home = ["HTML", "RSS", "RECENT"]
   section = ["HTML", "RSS"]
 
 [services.rss]
   limit = -1
+
+[outputFormats.RECENT]
+  mediaType = "application/json"
+  baseName = "recent"
+  isPlainText = true
+  notAlternative = true
