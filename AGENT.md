@@ -65,3 +65,9 @@ The shared shell provides navigation, footer, accessible theme controls, `/` to 
 ## Verification
 
 Build with Hugo and check home, `/projects/`, tag pages, and representative detail pages. Exercise combined search/status filters, no-results/reset, dark/light persistence, optional actions and thumbnails, mobile overflow, and responsive video embeds. Content and CSS edits do not imply a live deployment.
+
+## RSS feeds
+
+`/index.xml` contains all published entries; section feeds are available at `/<section>/index.xml`. Complete rendered content is included in `content:encoded`, with summaries retained for readers that prefer them. Set `services.rss.limit` to a positive item count to limit feeds; `-1` keeps all entries. RSS links are available in the footer and feed discovery metadata.
+
+`layouts/_default/rss.xml` is generated from Command Center's `shared/hugo/rss.xml`; edit the parent source and run `npm run theme:sync`. Keep this generated override committed so independent builds work. Existing JSON/search outputs and term feeds remain available.
