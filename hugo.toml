@@ -1,3 +1,4 @@
+enableRobotsTXT = true
 baseURL = "https://projects.eknath.dev"
 languageCode = "en-us"
 title = "Projects"
@@ -7,7 +8,7 @@ theme = "projectgrid"
   description = "My projects and experiments"
   author = "Eganathan R (Eknath)"
   siteid = "projects"
-  repository = "projects_blog"
+  repository = "EK-Projects"
 
 [markup]
   [markup.goldmark]
